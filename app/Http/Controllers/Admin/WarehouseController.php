@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Warehouse;
 use Illuminate\Http\Request;
 
 class WarehouseController extends Controller
@@ -13,6 +14,9 @@ class WarehouseController extends Controller
     public function index()
     {
         //
+        $warehouses = Warehouse::paginate(10);
+
+        return view('admin.warehouses.index',compact('warehouses'));
     }
 
     /**
@@ -34,7 +38,7 @@ class WarehouseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Warehouse $warehouse)
     {
         //
     }
@@ -42,7 +46,7 @@ class WarehouseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Warehouse $warehouse)
     {
         //
     }
@@ -50,7 +54,7 @@ class WarehouseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Warehouse $warehouse)
     {
         //
     }
@@ -58,7 +62,7 @@ class WarehouseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Warehouse $warehouse)
     {
         //
     }

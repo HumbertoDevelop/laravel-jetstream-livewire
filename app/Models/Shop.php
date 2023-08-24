@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Shop extends Model
 {
     use HasFactory;
-
+    protected $table ='vendor_shops';
+    
      // One to many 
      public function vendors(){
-        return $this->hasMany(Vendor::class);
+        return $this->hasMany(User::class);
     }
 
     // One to many

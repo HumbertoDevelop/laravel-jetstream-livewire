@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductGroup extends Model
 {
     use HasFactory;
-    protected $table = 'product_group';
+    protected $table = 'product_groups';
 
     public function product(){
         return $this->hasMany(Product::class);

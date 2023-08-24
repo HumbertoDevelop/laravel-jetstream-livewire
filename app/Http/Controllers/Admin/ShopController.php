@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -13,6 +14,8 @@ class ShopController extends Controller
     public function index()
     {
         //
+        $shops = Shop::paginate(10);
+        return view('admin.shops.index',compact('shops'));
     }
 
     /**
@@ -34,7 +37,7 @@ class ShopController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Shop $shop)
     {
         //
     }
@@ -42,7 +45,7 @@ class ShopController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Shop $shop)
     {
         //
     }
@@ -50,7 +53,7 @@ class ShopController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Shop $shop)
     {
         //
     }
@@ -58,7 +61,7 @@ class ShopController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Shop $shop)
     {
         //
     }

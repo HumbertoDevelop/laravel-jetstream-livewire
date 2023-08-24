@@ -7,7 +7,38 @@
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+@if (session('info'))
+<div class="alert alert-success">
+    <strong>{{session('info')}}</strong>
+</div>
+@endif
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Product</th>
+                    <th>Warehouse</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($inventories as $inventory)
+                    <tr>
+                        <td>{{$inventory->id}}</td>
+                        <td>{{$inventory->stock}}</td>
+                        <td>{{$inventory->product_id}}</td>
+                        <td>{{$inventory->warehouse_id}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    <footer class="card-footer">
+        {{$inventories->links()}}
+    </footer>
+</div>
 @stop
 
 @section('css')

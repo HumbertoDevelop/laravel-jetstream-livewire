@@ -12,7 +12,7 @@ class Product extends Model
 
      // One to many inverse
      public function vendors(){
-        return $this->belongsTo(Vendor::class);
+        return $this->belongsTo(User::class);
     }
 
      // One to many inverse
@@ -23,5 +23,17 @@ class Product extends Model
      // One to many inverse
      public function products_group(){
         return $this->belongsTo(ProductGroup::class);
+    }
+
+    //One to many
+    public function inventories(){
+
+        return $this->hasMany(Inventory::class);
+    }
+    
+    //One to many
+    public function warehouses(){
+
+        return $this->hasMany(Warehouse::class);
     }
 }

@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Shops')
+@section('title', 'Warehouses')
 
 @section('content_header')
-    <h1>Shop</h1>
+    <h1>Warehouses</h1>
 @stop
 
 @section('content')
@@ -14,34 +14,27 @@
 @endif
 <div class="card">
     <div class="card-body">
-        {{-- <a href="{{route('admin.dates.create')}}" class="btn btn-primary">New Product</a> --}}
         <table class="table table-striped table-responsive">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Shop name</th>
+                    <th>Name</th>
+                    <th>Address</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($shops as $shop)
+                @foreach ($warehouses as $warehouse)
                     <tr>
-                        <td>{{$shop->id}}</td>
-                        <td>{{$shop->shop_name}}</td>
+                        <td>{{$warehouse->id}}</td>
+                        <td>{{$warehouse->warehouse_name}}</td>
+                        <td>{{$warehouse->warehouse_address}}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
     <footer class="card-footer">
-        {{$shops->links()}}
+        {{$warehouses->links()}}
     </footer>
 </div>
-@stop
-
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
-@section('js')
-    <script> console.log('Hi!'); </script>
 @stop

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class VendorController extends Controller
@@ -13,6 +14,9 @@ class VendorController extends Controller
     public function index()
     {
         //
+        $vendors = User::paginate(10);
+        
+        return view('admin.vendors.index',compact('vendors'));
     }
 
     /**
