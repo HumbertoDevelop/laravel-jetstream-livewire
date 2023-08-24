@@ -16,8 +16,8 @@ class HomeController extends Controller
     {
         //
         $products = Product::paginate(10);
-        
-        return view('admin.products.index',compact('products'));
+
+        return view('admin.products.index', compact('products'));
     }
 
     /**
@@ -50,8 +50,13 @@ class HomeController extends Controller
     public function edit(Product $product)
     {
         //
+        $productPrice = DB::table('products')
+            ->join('prices', 'products.id', '=', 'prices.product_id')
+            ->select('prices.sale_price as price')
+            ->where('products.id', $product->id)
+            ->first();
 
-        // return view('admin.products.edit',compact('product'));
+        return view('admin.products.edit', compact(['product','productPrice']));
     }
 
     /**
@@ -60,6 +65,9 @@ class HomeController extends Controller
     public function update(Request $request, Product $product)
     {
         //
+        $product->update($request->all());
+
+        return redirect()->route('admin.products.edit')->width('info','Product edit successfully');
     }
 
     /**
