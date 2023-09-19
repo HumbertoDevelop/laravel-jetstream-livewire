@@ -1,5 +1,5 @@
 <x-app-layout>
-    
+
     @livewireStyles
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -17,9 +17,14 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <x-nav-link class="bg-sky-800 text-white px-2 p-1 rounded-lg mb-2 cursor-pointer hover:text-white hover:bg-sky-600">
-                {{__('New Schedule')}}
-            </x-nav-link>
+            <x-my-modal title="Schedule">
+            </x-my-modal>
+            <x-button x-data x-on:click="$dispatch('open-modal')" class="mb-3" type="button">
+                {{ __('New Schedule') }}
+            </x-button>
+            @if (session('success'))
+                <span class="text-green-500 text-xs">{{ session('success') }}</span>
+            @endif
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <livewire:schedules-dashboard-admin />
             </div>
@@ -27,14 +32,16 @@
     </div>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <x-nav-link class="bg-sky-800 text-white px-2 p-1 rounded-lg mb-2 cursor-pointer hover:text-white hover:bg-sky-600">
+            {{-- <x-my-modal title="Stundent">
+            </x-my-modal>
+            <x-button x-data x-on:click="$dispatch('open-modal')" class="mb-3">
                 {{__('New Student')}}
-            </x-nav-link>
+            </x-button> --}}
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <livewire:students-dashboard-admin/>
+                <livewire:students-dashboard-admin />
             </div>
         </div>
-    </div> 
-    
+    </div>
+    @yield('scripts')
     @livewireScripts
 </x-app-layout>
