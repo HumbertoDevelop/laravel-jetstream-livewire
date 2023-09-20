@@ -1,6 +1,11 @@
 <div>
     <div class="container mx-auto px-4 sm:px-8">
         <div class="py-8">
+
+            @if (session()->has('message'))
+                <h3 class="bg-blue-300 font-bold mb-3 p-2 rounded text-center text-sm text-white">
+                    {{ session('message') }}</h3>
+            @endif
             <div>
                 <h2 class="text-2xl font-semibold leading-tight">Time Schedule</h2>
             </div>
@@ -24,7 +29,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($schedules as $schedule)
+                            @forelse ($schedules as $schedule)
                                 <tr>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm ">
                                         {{ $schedule->date }}</td>
@@ -33,8 +38,10 @@
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm ">
                                         {{ $schedule->end_schedule }}</td>
                                 </tr>
-                            @endforeach
-                           
+                            @empty
+                                <h3 class="text-zinc-900 font-bold text-2xl">There's not schedules</h3>
+                            @endforelse
+
                         </tbody>
                     </table>
                 </div>

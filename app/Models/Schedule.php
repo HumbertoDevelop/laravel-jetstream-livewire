@@ -17,7 +17,7 @@ class Schedule extends Model
     } 
 
     //Many to Many relationship
-    public function students(){
-        return $this->belongsToMany(Student::class);
+    public function users(){
+        return $this->belongsToMany(User::class);
     }
 }

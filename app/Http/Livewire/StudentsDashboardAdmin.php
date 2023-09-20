@@ -8,8 +8,6 @@ use Livewire\WithPagination;
 
 class StudentsDashboardAdmin extends Component
 {
-
-
     use WithPagination;
 
     public function render()

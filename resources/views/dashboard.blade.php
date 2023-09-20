@@ -32,13 +32,9 @@
     </div>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            {{-- <x-my-modal title="Stundent">
-            </x-my-modal>
-            <x-button x-data x-on:click="$dispatch('open-modal')" class="mb-3">
-                {{__('New Student')}}
-            </x-button> --}}
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <livewire:students-dashboard-admin />
+                {{-- <livewire:users-dashboard-admin /> --}}
             </div>
         </div>
     </div>
