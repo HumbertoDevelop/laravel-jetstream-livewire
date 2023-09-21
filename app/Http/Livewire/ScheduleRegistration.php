@@ -9,10 +9,15 @@ class ScheduleRegistration extends Component
 {
     public $date;
     public $times = [];
+    public $timesCounter = 0;
+    public $modalvalidation = false;   
+
+    public function incrementCounter(){
+        $this->timesCounter++;
+    }
 
     public function create()
     {
-    // dd($this->date, $this->times);
     $this->validate([
         'date' => 'required',
         'times' => 'required',
@@ -20,6 +25,8 @@ class ScheduleRegistration extends Component
         'times.*.hora_salida' => 'required',
     ]);
 
+    $this->modalvalidation = true;
+    
     $date = Date::create([
         'date' => $this->date,
     ]);

@@ -5,7 +5,7 @@
             <div>
                 <x-button type="button" class="bg-green-400 text-white" 
                 wire:click="create" 
-                {{-- x-on:click="$dispatch('close-modal')" --}}
+                x-on:click="if($modalvalidation){$dispatch('close-modal')}"
                 >
                     {{ __('Save') }}
                 </x-button>
@@ -14,7 +14,7 @@
                 </x-button>
             </div>
             <div>
-                <button class="bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded" type="button" id="addMore">➕</button>
+                <button class="bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded" type="button" wire:click="incrementCounter" id="addMore">➕</button>
             </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
@@ -29,10 +29,48 @@
                     <span class="text-red-500 text-xs mt-3 block">{{ $message }}</span>
                 @enderror
             </div>
-            <div class="flex flex-wrap w-full" id="time">
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            @for ($i = 0; $i <= $timesCounter; $i++)
+                <div class="flex flex-wrap w-full" 
+                {{-- id="time" --}}
+                >
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="open">
+                            Open
+                        </label>
+                        <input wire:model="times.{{$i}}.hora_entrada"
+                            class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                             type="time" name="hora_entrada">
+                        @error('times{{$i}}.hora_entrada')
+                            <span class="text-red-500 text-xs mt-3 block">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="close">
+                            Close
+                        </label>
+                        <input wire:model="times.{{$i}}.hora_salida"
+                            class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                             type="time" name="hora_salida">
+                        @error('times.{{$i}}.hora_salida')
+                            <span class="text-red-500 text-xs mt-3 block">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+            @endfor
+            
+        </div>
+        
+    </form>
+</div>
+{{-- @section('scripts')
+    <script>
+        const addMoreBtn = document.getElementById('addMore');
+        addMoreBtn.addEventListener('click', function(e) {
+            // Crear un nuevo elemento de entrada de tiempo
+            const template = `
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="open">
-                        Hora de entrada
+                        Open
                     </label>
                     <input wire:model="times.0.hora_entrada"
                         class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -43,7 +81,7 @@
                 </div>
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="close">
-                        Hora de salida
+                        Close
                     </label>
                     <input wire:model="times.0.hora_salida"
                         class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -52,36 +90,6 @@
                         <span class="text-red-500 text-xs mt-3 block">{{ $message }}</span>
                     @enderror
                 </div>
-            </div>
-            
-        </div>
-        
-    </form>
-</div>
-@section('scripts')
-    <script>
-        const addMoreBtn = document.getElementById('addMore');
-        addMoreBtn.addEventListener('click', function(e) {
-            // Crear un nuevo elemento de entrada de tiempo
-            const template = `
-        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-first-name">
-                Open
-            </label>
-            <input
-                class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                id="grid-first-name" type="time" name="times[]">
-        </div>
-        <div class="w-full md:w-1/2 px-3">
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-last-name">
-                Close
-            </label>
-            <input
-                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-last-name" type="time" name="times[]">
-        </div>
     `;
             // Agregar el nuevo elemento de entrada de tiempo al contenedor
             const timeContainer = document.getElementById('time');
@@ -89,4 +97,4 @@
 
         });
     </script>
-@endsection
+@endsection --}}

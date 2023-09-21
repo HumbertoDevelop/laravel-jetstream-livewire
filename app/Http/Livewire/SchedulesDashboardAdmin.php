@@ -25,7 +25,6 @@ class SchedulesDashboardAdmin extends Component
             ->select('dates.date', 'schedules.start_schedule', 'schedules.end_schedule')
             ->get();
 
-            // dd($this->schedules);
     }
 
     public function render()
