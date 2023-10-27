@@ -1,18 +1,16 @@
 <div>
+    <!-- component -->
     <div class="container mx-auto px-4 sm:px-8">
         <div class="py-8">
 
-            <livewire:schedule-registration />
-            @if (session()->has('message'))
-                <h3 class="bg-blue-300 font-bold mb-3 p-2 rounded text-center text-sm text-white">
-                    {{ session('message') }}</h3>
-            @endif
             <div>
-                <h2 class="text-2xl font-semibold leading-tight">Time Schedule</h2>
+                <h2 class="text-2xl font-semibold leading-tight">Students list</h2>
             </div>
+
+            {{-- Table --}}
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                    @if ($schedules->isNotEmpty())
+                    @if ($data->isNotEmpty())
                         <table class="min-w-full leading-normal table table-striped text-center">
                             <thead>
                                 <tr>
@@ -22,41 +20,40 @@
                                     </th>
                                     <th
                                         class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Open
+                                        Schedule start
                                     </th>
                                     <th
                                         class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Close
+                                        Schedule end
+                                    </th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Actions
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($schedules as $schedule)
+                                @foreach ($data as $i)
                                     <tr>
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm ">
-                                            {{ $schedule->date }}
-                                        </td>
+                                            {{ $i->date }}</td>
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm ">
-                                            {{ $schedule->start_schedule }}
-                                        </td>
+                                            {{ $i->start_schedule }}</td>
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm ">
-                                            {{ $schedule->end_schedule }}
-                                        </td>
+                                            {{ $i->end_schedule }}</td>
+                                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm ">
+                                            button123</td>
                                     </tr>
-                                @empty
-                                    <h3 class="text-zinc-900 font-bold text-2xl">There's not schedules</h3>
-                                @endforelse
-
+                                @endforeach
                             </tbody>
                         </table>
                         <div class="my-3">
-                            {{ $schedules->links() }}
+                            {{ $data->links() }}
                         </div>
                     @else
-                        <p>No schedules found.</p>
+                        <p>No schedules assigned yet.</p>
                     @endif
                 </div>
-
             </div>
         </div>
     </div>

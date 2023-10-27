@@ -1,6 +1,8 @@
 <div class="flex justify-center">
     <form class="w-full">
         @csrf
+
+        {{-- Buttons form --}}
         <div class="flex justify-between">
             <div>
                 <x-button type="button" class="bg-green-400 text-white" wire:click="create">
@@ -12,6 +14,8 @@
                     wire:click="incrementCounter" id="addMore">➕</button>
             </div>
         </div>
+
+        {{-- Body form --}}
         <div class="flex flex-wrap -mx-3 my-6">
             <div class="w-full px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
@@ -24,8 +28,9 @@
                     <span class="text-red-500 text-xs mt-3 block">{{ $message }}</span>
                 @enderror
             </div>
+
             @for ($i = 0; $i <= $timesCounter; $i++)
-                <div class="flex flex-wrap w-full">
+                <div class="flex flex-wrap w-full" {{-- id="time" --}}>
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                             for="open">

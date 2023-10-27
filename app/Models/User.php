@@ -64,4 +64,9 @@ class User extends Authenticatable
 
     protected $table = 'users';
 
+     //Many to Many relationship
+     public function schedules()
+     {
+         return $this->belongsToMany(Schedule::class);
+     }
 }

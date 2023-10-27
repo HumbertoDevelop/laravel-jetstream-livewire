@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class ScheduleStudent extends Model
 {
     use HasFactory;
-    protected $table = 'schedule_user';
+    protected $table = 'schedule_student';
 }

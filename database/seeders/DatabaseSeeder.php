@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
         // User::factory(100)->create();
-        Date::factory(2)->create();
-        Schedule::factory(4)->create();
-        Student::factory(20)->create();
+        // Date::factory(2)->create();
+        // Schedule::factory(4)->create();
+        // Student::factory(20)->create();
     }
 }

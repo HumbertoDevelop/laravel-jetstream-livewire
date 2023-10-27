@@ -10,7 +10,7 @@ class ScheduleRegistration extends Component
     public $date;
     public $times = [];
     public $timesCounter = 0;
-    public $modalvalidation = false;   
+    // public $modalvalidation = false;   
 
     public function incrementCounter(){
         $this->timesCounter++;
@@ -25,7 +25,7 @@ class ScheduleRegistration extends Component
         'times.*.hora_salida' => 'required',
     ]);
 
-    $this->modalvalidation = true;
+    // $this->modalvalidation = true;
     
     $date = Date::create([
         'date' => $this->date,
@@ -44,6 +44,8 @@ class ScheduleRegistration extends Component
         }
     }
 
+    
+    $this->reset(); 
     $this->emitUp('savedSchedule');
 
     // Aquí podrías agregar lógica adicional, como redirigir al usuario a otra página o mostrar un mensaje de éxito.
