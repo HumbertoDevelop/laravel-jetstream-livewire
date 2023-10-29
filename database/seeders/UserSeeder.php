@@ -15,10 +15,10 @@ class UserSeeder extends Seeder
     {
         //
         User::create([
-            'name' => 'Antonio',
-            'email' => 'thekingtony96@gmail.com',
+            'name' => 'Admin',
+            'email' => 'ddrivingapplaravel@gmail.com',
             'isAdmin' => true,
-            'password' => bcrypt('1234567')
+            'password' => bcrypt('12345678')
         ]);
         
     }
