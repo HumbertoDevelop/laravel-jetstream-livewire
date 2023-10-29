@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,11 +23,11 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+    Route::get('/pdfFile/{id}',[PdfController::class,'pdfFile']);
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard')->middleware('user');
+    Route::get('/my-dashboard', function () {
+        return view('my-dashboard');
+    })->name('dashboard');
 });
-
-Route::get('/my-dashboard', function () {
-    return view('my-dashboard');
-})->name('dashboard');

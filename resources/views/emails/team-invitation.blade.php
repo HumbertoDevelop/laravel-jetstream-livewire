@@ -1,23 +1,13 @@
-@component('mail::message')
-{{ __('You have been invited to join the :team team!', ['team' => $invitation->team->name]) }}
-
-@if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::registration()))
-{{ __('If you do not have an account, you may create one by clicking the button below. After creating an account, you may click the invitation acceptance button in this email to accept the team invitation:') }}
-
-@component('mail::button', ['url' => route('register')])
-{{ __('Create Account') }}
-@endcomponent
-
-{{ __('If you already have an account, you may accept this invitation by clicking the button below:') }}
-
-@else
-{{ __('You may accept this invitation by clicking the button below:') }}
-@endif
-
-
-@component('mail::button', ['url' => $acceptUrl])
-{{ __('Accept Invitation') }}
-@endcomponent
-
-{{ __('If you did not expect to receive an invitation to this team, you may discard this email.') }}
-@endcomponent
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Driving App</title>
+</head>
+<body>
+    <h1>{{$mailData['title']}}</h1>
+    <p>{{$mailData['body']}}</p>
+</body>
+</html>

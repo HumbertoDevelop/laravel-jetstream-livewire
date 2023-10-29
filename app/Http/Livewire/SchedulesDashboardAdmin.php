@@ -3,8 +3,8 @@
 namespace App\Http\Livewire;
 
 use Illuminate\Support\Facades\DB;
-use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\Component;
 
 class SchedulesDashboardAdmin extends Component
 {
@@ -15,12 +15,14 @@ class SchedulesDashboardAdmin extends Component
 
     public function savedSchedule()
     {
+        // Save the schedule show message and mounting new info on table
         $this->mount();
         session()->flash('message', 'Schedule has been saved');
     }
 
     public function mount()
     {
+        // Livewire Lifecycle
         $this->schedules = DB::table('schedules')
         ->join('dates', 'schedules.date_id', '=', 'dates.id')
         ->select('dates.date', 'schedules.start_schedule', 'schedules.end_schedule')

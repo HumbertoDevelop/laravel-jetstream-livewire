@@ -13,6 +13,7 @@ class StudentsDashboardAdmin extends Component
 
     public function render()
     {
+        //Getting all students except admin users
         $students = User::where('isAdmin', '!=', '1')->latest()->paginate(5);
         return view('livewire.students-dashboard-admin', [
             'students' => $students,

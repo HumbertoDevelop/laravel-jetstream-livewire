@@ -14,4 +14,9 @@ class Date extends Model
     public function schedules(){
         return $this->hasMany(Schedule::class);
     } 
+
+    //Many to Many relationship
+    public function users(){
+        return $this->belongsToMany(User::class);
+    }
 }

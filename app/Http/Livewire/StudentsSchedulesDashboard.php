@@ -9,15 +9,22 @@ use Livewire\WithPagination;
 class StudentsSchedulesDashboard extends Component
 {
     use WithPagination;
-    
-    protected $data;
 
+    protected $data;
+    protected $listeners = ['saved'];
+
+    public function saved()
+    {
+        $this->mount();
+    }
+
+    //Livewire lifecycle mount
     public function mount()
     {
-        $this->data = DB::table('schedules')
-            ->join('dates', 'schedules.date_id', '=', 'dates.id')
-            ->join('users', 'dates.id', '=', 'users.id')
-            ->select('users.email','dates.date', 'schedules.start_schedule', 'schedules.end_schedule')
+        $this->data = DB::table('date_user')
+            ->join('users', 'date_user.user_id', '=', 'users.id')
+            ->join('dates', 'date_user.date_id', '=', 'dates.id')
+            ->select('users.email', 'dates.date')
             ->paginate(5);
     }
 
