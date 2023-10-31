@@ -30,11 +30,13 @@ class PdfController extends Controller
 
         //SQL query
         $this->schedules = DB::table('schedules')->join('dates', 'schedules.date_id', '=', 'dates.id')
-            ->select('schedules.id', 'dates.date', 'schedules.start_schedule', 'schedules.end_schedule')->where('schedules.id', $idClick)->get();
+            ->select('schedules.id', 'dates.date', 'schedules.start_schedule', 'schedules.end_schedule')->where('schedules.id', $idClick)->orderBy('dates.date', 'asc')
+            ->orderBy('schedules.start_schedule', 'asc')->get();
 
         // Getting all schedules
         $this->times = DB::table('schedules')->join('dates', 'schedules.date_id', '=', 'dates.id')
-            ->select('schedules.id', 'dates.date', 'schedules.start_schedule', 'schedules.end_schedule')->where('schedules.id', '!=', $idClick)->get();
+            ->select('schedules.id', 'dates.date', 'schedules.start_schedule', 'schedules.end_schedule')->where('schedules.id', '!=', $idClick)->orderBy('dates.date', 'asc')
+            ->orderBy('schedules.start_schedule', 'asc')->get();
 
         // Loading pdf view and putting data into
         $pdf = pdfile::loadView('pdf', ['times' => $this->schedules, 'other_times' => $this->times]);
